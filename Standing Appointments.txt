@@ -1,4 +1,3 @@
-
 --1) Create closure calendar
 
 create table #NTFB_Closure_Dates
@@ -26,7 +25,6 @@ insert into #NTFB_Closure_Dates select '12/24/2022', 'Holiday Weekend'
 insert into #NTFB_Closure_Dates select '12/26/2022', 'Holiday'
 insert into #NTFB_Closure_Dates select '12/31/2022', 'Holiday Weekend'
 
-
 --2) Standing Apt Calendar
 
 create table #Apt
@@ -38,16 +36,13 @@ set @counter = dateadd(dd,1-day(getdate()), getdate())
 set @EOM = dateadd(dd,-1,dateadd(mm,2,@counter))
 set @WeekNo = 1 
 
-
-
 while (@counter < @EOM	)
 	Begin
-
 		if day(@counter) = 1
 			begin
 				set @WeekNo = 1
 			end
-		
+	
 		insert into #Apt select @counter, @WeekNo, datepart(dw,@counter) - 1
 
 		if datepart(dw,@counter) = 7
@@ -55,14 +50,10 @@ while (@counter < @EOM	)
 				set  @WeekNo = @WeekNo + 1
 			end
 
-		
-
 		set @counter = dateadd(dd,1,@counter)
-
 	End
 
 --select * from #Apt
-
 
 --3) Actual Appointments
 /*
