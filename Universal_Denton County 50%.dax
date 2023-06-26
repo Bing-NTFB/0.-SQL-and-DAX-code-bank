@@ -1,0 +1,15 @@
+// create a parameter
+_Denton Adjustment Factor = generateseries(0.5,1,0.5)
+
+// under the parameter, create a measure
+Denton Adjustment Value = selectedvalue('_Denton Adjustment Factor'[Denton Adjustment Factor])
+
+// for new measures, change the values accordingly
+Food Insecure Population = SUMX(
+        'Monthly Meal Gap_County',
+        IF (
+            RELATED ( County_Detail[CountyName]) = "Denton",
+            'Monthly Meal Gap_County'[Monthly Food Insecure Population] * '_Denton Adjustment Factor'[Denton Adjustment Value],
+            'Monthly Meal Gap_County'[Monthly Food Insecure Population]
+        )
+    )
