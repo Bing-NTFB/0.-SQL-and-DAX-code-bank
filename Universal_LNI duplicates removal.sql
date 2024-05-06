@@ -24,10 +24,10 @@ create a column highlighting all the duplicated ones.
 */
 SELECT 
     it.DW_Id AS [IT.DW_ID],
-   -- lni.[FBC Product Category Code], 
-    --lni.[UNC Product Category Code],
-    --lni.[FBC Product Source Code],
-    --lni.[UNC Product Source Code],
+   lni.[FBC Product Category Code], 
+   lni.[UNC Product Category Code],
+   lni.[FBC Product Source Code],
+   lni.[UNC Product Source Code],
     lni.[Lot No] AS [LNI.LOT no],
     lni.[Item No] AS [LNI.Item no],
        CONCAT(lni.[Lot No], '_', it.[Pallet No], '_', it.[Item No]) AS [Combined Lot Pallet Item],
